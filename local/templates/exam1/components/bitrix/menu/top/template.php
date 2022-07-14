@@ -13,9 +13,12 @@ if (empty($arResult["ALL_ITEMS"]))
 	</li>
 	<? foreach ($arResult["MENU_STRUCTURE"] as $itemID => $arColumns) :
 		if ($arResult["ALL_ITEMS"][$itemID]["PERMISSION"] == "D") continue;
+		$menu_top_class = trim($APPLICATION->GetDirProperty("menu_top_class", $arResult["ALL_ITEMS"][$itemID]["LINK"]));
 	?>
 	<li>
-		<a href="<?= $arResult["ALL_ITEMS"][$itemID]["LINK"] ?>"><?= $arResult["ALL_ITEMS"][$itemID]["TEXT"] ?></a>
+		<a href="<?= $arResult["ALL_ITEMS"][$itemID]["LINK"] ?>" <?= $menu_top_class ? "class='$menu_top_class'" : "" ?>>
+			<?= $arResult["ALL_ITEMS"][$itemID]["TEXT"] ?>
+		</a>
 		<? if (is_array($arColumns) && count($arColumns) > 0) : ?>
 			<? foreach ($arColumns as $key => $arRow) : ?>
 				<ul>
