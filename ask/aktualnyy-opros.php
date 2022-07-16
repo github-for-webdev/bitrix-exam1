@@ -1,9 +1,10 @@
 <? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Актуальный опрос"); ?><?$APPLICATION->IncludeComponent(
+$APPLICATION->SetTitle("Актуальный опрос"); ?>
+<? $APPLICATION->IncludeComponent(
 	"bitrix:voting.current",
 	"",
 	array(
-	"AJAX_MODE" => "N",	// Включить режим AJAX
+		"AJAX_MODE" => "N",	// Включить режим AJAX
 		"AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
 		"AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
 		"AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
@@ -14,4 +15,5 @@ $APPLICATION->SetTitle("Актуальный опрос"); ?><?$APPLICATION->Inc
 		"VOTE_ALL_RESULTS" => "N",	// Показывать варианты ответов для полей типа Text и Textarea
 		"VOTE_ID" => "1",	// ID опроса
 	)
-);?><br><? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php"); ?>
+); ?>
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php"); ?>
