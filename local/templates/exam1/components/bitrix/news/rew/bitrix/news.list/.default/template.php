@@ -7,6 +7,19 @@ $this->setFrameMode(true);
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 	?>
+	<?	if (isset($arItem["PREVIEW_PICTURE"]["ID"])) :
+		$arFileTmp = CFile::ResizeImageGet(
+			$arItem["PREVIEW_PICTURE"]["ID"],
+			array(
+				"width" => 68,
+				"height" => 50
+			),
+			BX_RESIZE_IMAGE_PROPORTIONAL
+		);
+		$src = $arFileTmp['src'];
+	else :
+		$src = SITE_TEMPLATE_PATH . "/img/no_photo_left_block.jpg";
+	endif; ?>
 	<div class="review-block" id="<?= $this->GetEditAreaId($arItem['ID']); ?>">
 		<div class="review-text">
 			<div class="review-block-title">
@@ -26,7 +39,7 @@ $this->setFrameMode(true);
 		<div class="review-img-wrap">
 			<a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
 				<? if (is_array($arItem["PREVIEW_PICTURE"])) : ?>
-					<img src="<?= $arItem["PREVIEW_PICTURE"]["SRC"]; ?>" alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"]; ?>">
+					<img src="<?= $src; ?>" alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"]; ?>">
 				<? else : ?>
 					<img src="<?= SITE_TEMPLATE_PATH; ?>/img/rew/no_photo.jpg">
 				<? endif; ?>
